@@ -20,6 +20,8 @@ languageSelect.addEventListener("change", () => {
 function typeAppend(el, text, speed = 10) {
   const cursorClass = "typing";
   let  cursor = el.querySelector("." + cursorClass);
+  const line = document.createElement("div");
+  line.classList.add("line");
   if (!cursor) {
       cursor = document.createElement("span");
       cursor.classList.add(cursorClass);
@@ -146,6 +148,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
