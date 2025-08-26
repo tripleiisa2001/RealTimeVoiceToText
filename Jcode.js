@@ -20,19 +20,18 @@ function typeAppend(el, text, speed = 10) {
   if (!cursor) {
       cursor = document.createElement("span");
       cursor.classList.add(cursorClass);
-    el.appendChild(cursor);
+      el.appendChild(cursor);
   }
 
   let i = 0;
   function typing() {
     if (i < text.length) {
-      span.innerHTML = text.substring(0, i + 1);
+      cursor.innerHTML = text.substring(0, i + 1);
       i++;
       el.scrollTop = el.scrollHeight;
       setTimeout(typing, speed);
     } else {
-      span.innerHTML = text + " ";
-      span.classList.add(cursorClass);
+      cursor.innerHTML = text + " ";
       el.scrollTop = el.scrollHeight;
     }
   }
@@ -137,4 +136,5 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
