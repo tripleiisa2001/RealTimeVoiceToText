@@ -71,19 +71,16 @@ recognition.onresult = (event) => {
 };
 
 
-// stop listening counter
-let isListening = false;
+
 
 // Start listening  alert
 document.getElementById("strt").addEventListener("click", () => {
-  isListening = true;
   recognition.start();
   showAlert("🎙️ Listening started!");
 });
 
 // Stop listening  alert
 document.getElementById("stp").addEventListener("click", () => {
-  isListening = false;
   recognition.stop();
   showAlert("🛑 Listening stopped!");
   if (!output.lastChild || !output.lastChild.classList?.contains("typing")) {
@@ -139,6 +136,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
