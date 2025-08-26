@@ -1,9 +1,3 @@
-// Speech recognition setup
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-recognition.interimResults = true;
-recognition.continuous = true;
-recognition.lang = "en-US"; // Default language
 
 const output = document.getElementById("output");
 const languageSelect = document.getElementById("language");
@@ -291,6 +285,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
