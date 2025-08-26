@@ -56,17 +56,23 @@ function showAlert(message, duration = 1500) {
 }
 
 // ✅ Handle recognition results
+let lastFinal = "";
+
 recognition.onresult = (event) => {
   for (let i = event.resultIndex; i < event.results.length; ++i) {
     const result = event.results[i];
-    const text = result[0].transcript;
+    const text = result[0].transcript.trim();
 
     if (result.isFinal) {
-      finalTranscript += text + " ";
-      typeAppend(output, text.trim());
+      if (text !== lastFinal) {
+        finalTranscript += text + " ";
+        typeAppend(output, text);
+        lastFinal = text;
+      }
     }
   }
 };
+
 
 // ✅ Auto-restart for mobile/browser interruptions
 recognition.onend = () => {
@@ -142,6 +148,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
