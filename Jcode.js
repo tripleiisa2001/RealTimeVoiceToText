@@ -1,5 +1,3 @@
-
-const output = document.getElementById("output");
 const languageSelect = document.getElementById("language");
 let finalTranscript = "";// Speech recognition setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -285,6 +283,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
