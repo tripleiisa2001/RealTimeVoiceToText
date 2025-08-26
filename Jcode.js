@@ -7,6 +7,9 @@ recognition.lang = "en-US"; // Default language
 
 const output = document.getElementById("output");
 const languageSelect = document.getElementById("language");
+let finalTranscript = "";
+// counter for coutinuos listening
+let isListening = false;
 
 // Update language dynamically
 languageSelect.addEventListener("change", () => {
@@ -50,7 +53,7 @@ function showAlert(message, duration = 1500) {
   }, duration);
 }
 
-let finalTranscript = "";
+
 
 recognition.onresult = (event) => {
   let interimTranscript = "";
@@ -70,17 +73,23 @@ recognition.onresult = (event) => {
   }
 };
 
-
-
+// Auto-restart on mobile/browser stop
+recognition.onend = () => {
+  if (isListening) {
+    recognition.start();
+  }
+};
 
 // Start listening  alert
 document.getElementById("strt").addEventListener("click", () => {
+  isListening = true;
   recognition.start();
   showAlert("🎙️ Listening started!");
 });
 
 // Stop listening  alert
 document.getElementById("stp").addEventListener("click", () => {
+  isListening = false;
   recognition.stop();
   showAlert("🛑 Listening stopped!");
   if (!output.lastChild || !output.lastChild.classList?.contains("typing")) {
@@ -93,6 +102,7 @@ document.getElementById("stp").addEventListener("click", () => {
 
 // Clear output
 document.getElementById("clr").addEventListener("click", () => {
+  finalTranscript = "";
   output.innerHTML = "";
   const cursor = document.createElement("span");
   cursor.classList.add("typing");
@@ -136,6 +146,7 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
 
 
 
