@@ -16,12 +16,12 @@ languageSelect.addEventListener("change", () => {
 // Typing effect + append + auto-scroll
 function typeAppend(el, text, speed = 10) {
   const cursorClass = "typing";
-  const oldCursor = el.querySelector("." + cursorClass);
-  if (oldCursor) oldCursor.classList.remove(cursorClass);
-
-  const span = document.createElement("span");
-  span.classList.add(cursorClass);
-  el.appendChild(span);
+  let  cursor = el.querySelector("." + cursorClass);
+  if (!cursor) {
+      cursor = document.createElement("span");
+      cursor.classList.add(cursorClass);
+    el.appendChild(cursor);
+  }
 
   let i = 0;
   function typing() {
@@ -137,3 +137,4 @@ document.getElementById("dwn").addEventListener("click", () => {
   link.click();
   document.body.removeChild(link);
 });
+
